@@ -1,0 +1,52 @@
+{
+  "name": "almanac.httparchive.org",
+  "version": "0.0.1",
+  "description": "HTTP Archive's annual 'State of the Web' report made by the web community.",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HTTPArchive/almanac.httparchive.org.git"
+  },
+  "author": "Rick Viscomi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/HTTPArchive/almanac.httparchive.org/issues"
+  },
+  "homepage": "https://github.com/HTTPArchive/almanac.httparchive.org#readme",
+  "scripts": {
+    "test": "node ./tools/test",
+    "generate": "node ./tools/generate",
+    "figure-images": "node ./tools/generate/generate_figure_images",
+    "watch": "node ./tools/generate/chapter_watcher",
+    "ebooks": "node ./tools/generate/generate_ebook_pdfs",
+    "deploy": "./tools/scripts/deploy.sh",
+    "lint": "run-script-os",
+    "lint:darwin:linux": "docker container run -it --rm -v \"$PWD/..\":/app -w /app/src --entrypoint=./tools/scripts/run_linter_locally.sh github/super-linter",
+    "lint:win32": "docker container run --rm -v \"%cd%\\..\":/app -w /app/src --entrypoint=./tools/scripts/run_linter_locally.sh github/super-linter",
+    "pytest": "pytest --cov server --cov-fail-under=100 --cov-report=term-missing -s",
+    "stage": "./tools/scripts/deploy.sh -n",
+    "start": "run-script-os",
+    "start:darwin:linux": "./tools/scripts/run_and_test_website.sh -d",
+    "start:win32": "call tools/scripts/run_and_test_website.bat",
+    "stop": "run-script-os",
+    "stop:darwin:linux": "./tools/scripts/stop_website.sh",
+    "stop:win32": "call tools/scripts/stop_website.bat",
+    "timestamps": "node ./tools/generate/generate_timestamps"
+  },
+  "devDependencies": {
+    "ejs": "3.1.8",
+    "fs-extra": "10.1.0",
+    "jsdom": "19.0.0",
+    "node-fetch": "3.2.5",
+    "node-watch": "0.7.3",
+    "prettier": "2.6.2",
+    "puppeteer": "15.1.1",
+    "rainbow-code": "2.1.7",
+    "recursive-readdir": "2.2.2",
+    "run-script-os": "1.1.6",
+    "showdown": "2.1.0",
+    "smartypants": "0.1.6",
+    "web-vitals": "2.1.4",
+    "xml-js": "1.6.11"
+  }
+}
